@@ -68,55 +68,100 @@ const CityView = ({ cityName, onBack }) => {
   }, [cityName]);
 
   return (
-    <div className="city-view-container fade-in">
-      {/* Background Collage */}
-      <div className="city-bg-collage">
-        {images.map((imgUrl, i) => (
-          <div 
-            key={i} 
-            className="collage-image" 
-            style={{ 
-              backgroundImage: `url(${imgUrl})`,
-              animationDelay: `${i * 0.5}s`
-            }} 
-          />
-        ))}
+    <div className="min-h-screen bg-[#020617] text-slate-100 font-sans selection:bg-marigold selection:text-black">
+      {/* Cinematic Background */}
+      <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-transparent to-slate-950 z-10" />
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 opacity-10 scale-110">
+          {images.map((imgUrl, i) => (
+            <div 
+              key={i} 
+              className="h-[60vh] bg-cover bg-center rounded-3xl grayscale" 
+              style={{ 
+                backgroundImage: `url(${imgUrl})`,
+                animation: `pulseBg 20s infinite alternate ${i * 2}s`
+              }} 
+            />
+          ))}
+        </div>
       </div>
 
-      <div className="city-content-overlay">
-        <button className="btn btn-secondary mb-4 back-btn" onClick={onBack}>
-          &larr; Back to State
+      <div className="relative z-10 container mx-auto px-6 py-12">
+        <button 
+          className="group mb-12 flex items-center gap-3 px-8 py-3 bg-white/5 hover:bg-amber-500/10 border border-white/10 hover:border-amber-500/30 rounded-full text-slate-400 hover:text-amber-500 font-bold transition-all duration-300" 
+          onClick={onBack}
+        >
+          <span className="text-xl transition-transform group-hover:-translate-x-2">←</span> 
+          <span className="tracking-widest text-xs uppercase">Return to State</span>
         </button>
 
-        <div className="glass-panel city-detail-panel slide-up-fast">
-          <h1 className="city-title">{cityName}</h1>
-          
-          {loading ? (
-            <div className="loading-container">
-              <button className="btn btn-primary loading-btn" disabled>
-                <div className="spinner-ring"></div>
-                Fetching City Data...
-              </button>
+        <div className="space-y-24 animate-fade-in">
+          {/* City Hero */}
+          <div className="text-center space-y-4">
+            <span className="text-amber-500 font-black tracking-[0.5em] uppercase text-sm block animate-tracking-in-expand">
+              Exploring Urban Heritage
+            </span>
+            <h1 className="text-7xl md:text-[10rem] font-serif font-black leading-tight bg-gradient-to-b from-white via-white to-amber-500/20 bg-clip-text text-transparent drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+              {cityName}
+            </h1>
+          </div>
+
+          <div className="grid lg:grid-cols-5 gap-20 items-start">
+            <div className="lg:col-span-3 space-y-12">
+              <section className="glass-panel p-10 md:p-16 rounded-[3rem] bg-slate-900/40 backdrop-blur-3xl border border-white/10 shadow-[0_0_100px_rgba(0,0,0,0.4)]">
+                {loading ? (
+                  <div className="space-y-6 py-10 animate-pulse">
+                    <div className="h-6 bg-white/5 rounded-full w-full" />
+                    <div className="h-6 bg-white/5 rounded-full w-5/6" />
+                    <div className="h-6 bg-white/5 rounded-full w-3/4" />
+                  </div>
+                ) : (
+                  <div className="space-y-10">
+                    <div className="prose prose-invert max-w-none prose-p:text-xl prose-p:leading-relaxed prose-p:text-slate-300 prose-p:font-light">
+                      {extract.split('\n').map((paragraph, idx) => (
+                        <p key={idx} className="mb-8">{paragraph}</p>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </section>
             </div>
-          ) : (
-            <div className="city-info">
-              <div className="city-extract">
-                {extract.split('\n').map((paragraph, idx) => (
-                  <p key={idx} className="mb-4">{paragraph}</p>
-                ))}
-              </div>
-              
-              {images.length > 0 && (
-                <div className="city-gallery">
-                  <h3>Gallery</h3>
-                  <div className="gallery-grid">
-                    {images.map((url, idx) => (
-                      <img key={idx} src={url} alt={`${cityName} view ${idx}`} className="gallery-img floating" style={{ animationDelay: `${idx * 0.3}s` }} />
-                    ))}
+
+            <div className="lg:col-span-2 sticky top-32 space-y-8">
+              <div className="p-1 bg-gradient-to-br from-amber-500/40 to-emerald-500/40 rounded-[2.5rem] shadow-2xl">
+                <div className="bg-slate-950 p-10 rounded-[2.4rem] space-y-8">
+                  <div className="h-px w-12 bg-amber-500" />
+                  <h4 className="text-3xl font-serif font-bold text-white">City Essentials</h4>
+                  <p className="text-slate-400 text-sm leading-relaxed">
+                    A deep dive into the historical significance and modern-day charm of {cityName}.
+                  </p>
+                  <div className="pt-4 flex items-center gap-4 text-amber-500 font-black tracking-widest text-xs uppercase italic">
+                    <span className="w-8 h-[1px] bg-amber-500/30" /> Real-time Discovery
                   </div>
                 </div>
-              )}
+              </div>
             </div>
+          </div>
+
+          {/* Cinematic Gallery */}
+          {!loading && images.length > 0 && (
+            <section className="space-y-16">
+              <div className="flex items-center gap-8">
+                <h3 className="text-5xl font-serif font-black text-white whitespace-nowrap">Gallery</h3>
+                <div className="h-px flex-1 bg-gradient-to-r from-white/10 to-transparent" />
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {images.map((url, idx) => (
+                  <div key={idx} className="group relative aspect-[3/4] overflow-hidden rounded-[2rem] border border-white/10 bg-slate-900 shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                    <img src={url} alt="" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60 group-hover:opacity-90 transition-opacity" />
+                    <div className="absolute top-6 left-6 w-8 h-8 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center text-[10px] font-bold text-amber-500 border border-white/20">
+                      {idx + 1}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
           )}
         </div>
       </div>

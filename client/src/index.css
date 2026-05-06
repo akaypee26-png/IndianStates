@@ -1,18 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&display=swap');
 
 :root {
-  --primary: #6366f1;
-  --primary-hover: #4f46e5;
-  --secondary: #ec4899;
-  --background: #0f172a;
-  --surface: rgba(30, 41, 59, 0.7);
-  --surface-hover: rgba(30, 41, 59, 0.9);
+  --primary: #fbbf24; /* Royal Gold */
+  --primary-hover: #f59e0b;
+  --secondary: #10b981; /* Imperial Emerald */
+  --accent: #3b82f6; /* Royal Blue */
+  --background: #020617; /* Midnight Slate */
+  --surface: rgba(15, 23, 42, 0.6);
+  --surface-hover: rgba(30, 41, 59, 0.8);
   --text-main: #f8fafc;
   --text-muted: #94a3b8;
-  --border: rgba(255, 255, 255, 0.1);
-  --glass-bg: rgba(15, 23, 42, 0.6);
-  --glass-border: rgba(255, 255, 255, 0.08);
-  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  --border: rgba(251, 191, 36, 0.2); /* Gold border */
+  --glass-bg: rgba(2, 6, 23, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
   --error: #ef4444;
   --success: #10b981;
 }
@@ -31,8 +32,9 @@ body {
   display: flex;
   flex-direction: column;
   background-image:
-    radial-gradient(circle at 15% 50%, rgba(99, 102, 241, 0.15), transparent 25%),
-    radial-gradient(circle at 85% 30%, rgba(236, 72, 153, 0.15), transparent 25%);
+    radial-gradient(circle at 10% 20%, rgba(245, 158, 11, 0.08), transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.08), transparent 40%),
+    url('https://www.transparenttextures.com/patterns/p6.png'); /* Subtle architectural pattern */
   background-attachment: fixed;
 }
 
@@ -44,16 +46,16 @@ body {
 }
 
 /* Typography */
-h1,
-h2,
-h3,
-h4 {
-  font-weight: 600;
-  line-height: 1.2;
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  letter-spacing: -0.02em;
 }
 
 p {
-  line-height: 1.6;
+  line-height: 1.8;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.85);
 }
 
 /* Glassmorphism utilities */
@@ -120,14 +122,14 @@ select option {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  background: linear-gradient(135deg, #f59e0b, #10b981);
   color: white;
-  box-shadow: 0 4px 14px 0 rgba(99, 102, 241, 0.39);
+  box-shadow: 0 4px 14px 0 rgba(245, 158, 11, 0.3);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
 }
 
 .btn-secondary {
@@ -248,11 +250,13 @@ select option {
 }
 
 .auth-header h1 {
-  font-size: 2rem;
-  background: linear-gradient(to right, #a855f7, #ec4899);
+  font-size: 2.8rem;
+  font-family: 'Playfair Display', serif;
+  background: linear-gradient(to right, #f59e0b, #10b981);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
 }
 
 .auth-toggle {
@@ -280,21 +284,23 @@ select option {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 2rem;
-  background: rgba(15, 23, 42, 0.8);
-  backdrop-filter: blur(12px);
+  padding: 1rem 3rem;
+  background: rgba(2, 6, 23, 0.85);
+  backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 9999; /* HIGHEST Z-INDEX TO PREVENT HIDING */
 }
 
 .navbar-brand {
-  font-size: 1.5rem;
-  font-weight: 700;
-  background: linear-gradient(to right, #a855f7, #ec4899);
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 900;
+  background: linear-gradient(to right, #f59e0b, #10b981);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  letter-spacing: -0.01em;
 }
 
 .user-info {
@@ -659,15 +665,15 @@ select option {
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
-  background-color: rgba(15, 23, 42, 0.95);
-  backdrop-filter: blur(12px);
-  min-width: 200px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.5);
+  background-color: rgba(2, 6, 23, 0.98);
+  backdrop-filter: blur(20px);
+  min-width: 240px;
+  box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.9);
   border: 1px solid var(--primary);
-  border-radius: 8px;
-  z-index: 100;
-  padding: 0.5rem 0;
-  max-height: 400px;
+  border-radius: 12px;
+  z-index: 10000; /* EVEN HIGHER FOR DROPDOWN */
+  padding: 1rem 0;
+  max-height: 500px;
   overflow-y: auto;
 }
 
@@ -834,4 +840,84 @@ select option {
   to {
     transform: rotate(360deg);
   }
+}
+
+/* Majestic Animations */
+@keyframes tracking-in-expand {
+  0% {
+    letter-spacing: -0.5em;
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.animate-tracking-in-expand {
+  animation: tracking-in-expand 1.5s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+}
+
+@keyframes fade-in-up {
+  0% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 1.2s cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+@keyframes pulseBg {
+  0% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.1;
+  }
+  50% {
+    transform: scale(1.05) rotate(0.5deg);
+    opacity: 0.2;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.1;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 1.5s ease-out forwards;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+.animate-shake {
+  animation: shake 0.3s ease-in-out;
+}
+
+/* Custom Scrollbar for Heritage Feel */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #020617;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(251, 191, 36, 0.2);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(251, 191, 36, 0.4);
 }
