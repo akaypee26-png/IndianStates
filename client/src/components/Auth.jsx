@@ -53,7 +53,13 @@ const Auth = ({ setAuth }) => {
 
       let res;
       if (isLogin) {
-        // For login, backend expects 'identifier' and 'password'
+       
+        // 🔥 ADD THIS (PERSIST LOGIN)
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("user", JSON.stringify(res.data.user));
+
+        
+         // For login, backend expects 'identifier' and 'password'
         res = await axios.post('/api/auth/login', { identifier: username, password }, config);
         setAuth(res.data.user);
         navigate('/dashboard');
