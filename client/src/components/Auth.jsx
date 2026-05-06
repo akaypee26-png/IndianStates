@@ -101,7 +101,7 @@ const Auth = ({ setAuth }) => {
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/black-paper.png')] opacity-30" />
       </div>
 
-      <div className={`glass-panel auth-box ${isLogin ? 'login-shape' : 'register-shape'} relative flex flex-col justify-center p-12 md:p-24 shadow-[0_0_100px_rgba(0,0,0,0.8)] border border-amber-500/20 backdrop-blur-3xl animate-fade-in`} data-page={isLogin ? 'login' : 'register'}>
+      <div className="glass-panel auth-box relative flex flex-col justify-center p-12 md:p-24 shadow-[0_0_100px_rgba(0,0,0,0.8)] border border-amber-500/20 backdrop-blur-3xl animate-fade-in" data-page={isLogin ? 'login' : 'register'}>
         <div className="auth-header mb-12 text-center relative z-10">
           <div className="h-px w-12 bg-amber-500 mx-auto mb-6" />
           <h1 className="text-5xl md:text-6xl font-serif font-black bg-gradient-to-b from-white via-white to-amber-500/30 bg-clip-text text-transparent drop-shadow-2xl mb-4 tracking-tighter">
@@ -114,24 +114,25 @@ const Auth = ({ setAuth }) => {
 
         <form onSubmit={onSubmit} className="relative z-10 space-y-8">
           <div className="space-y-2">
-            <label htmlFor="username" className="text-[10px] font-black text-amber-500/60 uppercase tracking-widest ml-1">
-              {isLogin ? 'Identity' : 'Username'}
-            </label>
-            <input
-              type="text"
-              id="username"
-              name="username"
-              value={username}
-              onChange={onChange}
-              required
-              className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:border-amber-500/50 focus:bg-white/10 transition-all outline-none placeholder:text-slate-600 shadow-inner"
-              placeholder={isLogin ? 'Username or Email' : 'Choose a unique name'}
-            />
+            <div className="relative">
+              <label htmlFor="username" className="block text-xs font-semibold text-amber-400 uppercase mb-1">{isLogin ? 'Identity' : 'Username'}</label>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                value={username}
+                onChange={onChange}
+                required
+                className="w-full bg-white/10 border border-amber-400/30 rounded-lg px-4 py-3 text-white focus:border-amber-500 focus:bg-white/20 transition-all placeholder:text-slate-400"
+                placeholder={isLogin ? 'Username or Email' : 'Choose a unique name'}
+              />
+            </div>
           </div>
 
           {!isLogin && (
             <div className="space-y-2">
-              <label htmlFor="email" className="text-[10px] font-black text-amber-500/60 uppercase tracking-widest ml-1">Electronic Mail</label>
+              <div className="relative">
+              <label htmlFor="email" className="block text-xs font-semibold text-amber-400 uppercase mb-1">Electronic Mail</label>
               <input
                 type="email"
                 id="email"
@@ -139,37 +140,41 @@ const Auth = ({ setAuth }) => {
                 value={email}
                 onChange={onChange}
                 required
-                className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:border-amber-500/50 focus:bg-white/10 transition-all outline-none placeholder:text-slate-600 shadow-inner"
+                className="w-full bg-white/10 border border-amber-400/30 rounded-lg px-4 py-3 text-white focus:border-amber-500 focus:bg-white/20 transition-all placeholder:text-slate-400"
                 placeholder="you@example.com"
               />
+            </div>
             </div>
           )}
 
           <div className="space-y-2">
-            <label htmlFor="password" className="text-[10px] font-black text-amber-500/60 uppercase tracking-widest ml-1">Access Key</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={password}
-              onChange={onChange}
-              required
-              className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:border-amber-500/50 focus:bg-white/10 transition-all outline-none placeholder:text-slate-600 shadow-inner"
-              placeholder="••••••••"
-            />
+            <div className="relative">
+              <label htmlFor="password" className="block text-xs font-semibold text-amber-400 uppercase mb-1">Access Key</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                value={password}
+                onChange={onChange}
+                required
+                className="w-full bg-white/10 border border-amber-400/30 rounded-lg px-4 py-3 text-white focus:border-amber-500 focus:bg-white/20 transition-all placeholder:text-slate-400"
+                placeholder="••••••••"
+              />
+            </div>
           </div>
 
           {!isLogin && (
             <div className="space-y-2">
-              <label htmlFor="state" className="text-[10px] font-black text-amber-500/60 uppercase tracking-widest ml-1">Origin State</label>
-              <div className="relative group">
+              <div className="relative">
+              <label htmlFor="state" className="block text-xs font-semibold text-amber-400 uppercase mb-1">Origin State</label>
+              <div className="relative">
                 <select
                   name="state"
                   id="state"
                   value={state}
                   onChange={onChange}
                   required
-                  className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white focus:border-amber-500/50 focus:bg-white/10 transition-all outline-none appearance-none cursor-pointer"
+                  className="w-full bg-white/10 border border-amber-400/30 rounded-lg px-4 py-3 text-white focus:border-amber-500 focus:bg-white/20 transition-all appearance-none cursor-pointer"
                 >
                   <option value="" className="bg-slate-950">Select Destination</option>
                   {statesData.map((s, index) => (
@@ -178,8 +183,9 @@ const Auth = ({ setAuth }) => {
                     </option>
                   ))}
                 </select>
-                <div className="absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none text-amber-500/50 text-xs">▼</div>
+                <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-amber-500/60">▼</div>
               </div>
+            </div>
             </div>
           )}
 
