@@ -55,8 +55,8 @@ const Auth = ({ setAuth }) => {
       if (isLogin) {
        
         // 🔥 ADD THIS (PERSIST LOGIN)
-        localStorage.setItem("token", res.data.token);
-        localStorage.setItem("user", JSON.stringify(res.data.user));
+        //localStorage.setItem("token", res.data.token);
+       // localStorage.setItem("user", JSON.stringify(res.data.user));
 
         
          // For login, backend expects 'identifier' and 'password'
